@@ -1,0 +1,43 @@
+services:
+  sahtk_database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sahtk
+      POSTGRES_PASSWORD: sahtk
+      POSTGRES_DB: sahtk
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sahtk"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
+      CORS_ORIGINS: http://localhost:3000,https://sahtk.shop
+      APP_SECRET: local-dev-secret
+    ports:
+      - "8000:8000"
+    depends_on:
+      sahtk_database:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

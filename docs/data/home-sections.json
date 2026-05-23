@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "headline": "جمالكِ يبدأ من روتين يثق فيه قلبكِ",
+    "subheadline": "نما للجمال — عناية مختارة بعناية، تُوصَل لبابكِ وتدفعين عند الاستلام",
+    "cta_text": "اكتشفي المجموعة",
+    "cta_href": "/collections",
+    "image": "/placeholders/home-hero.webp"
+  },
+  "trust_bar": [
+    { "icon": "cod", "text": "دفع عند الاستلام" },
+    { "icon": "shipping", "text": "شحن داخل السعودية" },
+    { "icon": "authentic", "text": "منتجات مختارة" },
+    { "icon": "support", "text": "دعم واتساب" }
+  ],
+  "why_nama": [
+    {
+      "title": "تركيبات مدروسة",
+      "body": "نختار ما يناسب نساء السعودية — جودة تليق بكِ."
+    },
+    {
+      "title": "ثقة حقيقية",
+      "body": "تقييمات و تجارب عميلات — مو وعود فارغة."
+    },
+    {
+      "title": "عروض ذكية",
+      "body": "وفّري مع عروض الكمية — بدون تعقيد."
+    }
+  ],
+  "ugc_placeholders": [
+    "/placeholders/ugc-1.webp",
+    "/placeholders/ugc-2.webp",
+    "/placeholders/ugc-3.webp",
+    "/placeholders/ugc-4.webp",
+    "/placeholders/ugc-5.webp",
+    "/placeholders/ugc-6.webp"
+  ],
+  "authority": {
+    "title": "كيف نختار منتجاتنا",
+    "body": "فريق نما للجمال يعمل مع مركز تسويق معتمد لدى نساء المملكة — كل منتج يمر بمراجعة: المكوّن، التجربة، والتغليف قبل أن يصل لكِ.",
+    "image": "/placeholders/lab.webp"
+  }
+}

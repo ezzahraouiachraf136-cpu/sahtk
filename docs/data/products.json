@@ -1,0 +1,145 @@
+{
+  "currency": "SAR",
+  "upsell_price_sar": 99,
+  "upsell_timeout_ms": 12000,
+  "default_offer_code": "double",
+  "offers": [
+    {
+      "offer_code": "single",
+      "label_ar": "قطعة واحدة",
+      "quantity": 1,
+      "price_sar": 199,
+      "compare_at_sar": 199
+    },
+    {
+      "offer_code": "double",
+      "label_ar": "قطعتان",
+      "quantity": 2,
+      "price_sar": 279,
+      "compare_at_sar": 398,
+      "badge_ar": "الأكثر طلباً",
+      "is_default": true
+    },
+    {
+      "offer_code": "triple",
+      "label_ar": "ثلاث قطع",
+      "quantity": 3,
+      "price_sar": 349,
+      "compare_at_sar": 597,
+      "badge_ar": "أفضل قيمة"
+    }
+  ],
+  "products": [
+    {
+      "slug": "platinum-hair-gum",
+      "name_ar": "علكة بلاتينية ضد تساقط الشعر",
+      "name_en": "Platinum Hair Support Gum",
+      "positioning": "روتين يومي فاخر لدعم صحة الشعر من الداخل",
+      "hero_headline": "شعركِ يستاهل دعم من الداخل — مو بس زيوت برّا",
+      "hero_subheadline": "علكة بلاتينية ضد تساقط الشعر — عادة يومية سهلة تتماشى مع مشغولياتكِ",
+      "rating": 4.8,
+      "review_count": 2400,
+      "scarcity_text": "بقي 17 قطعة من دفعة اليوم",
+      "benefits": [
+        "تساعد على دعم صحة الشعر ضمن روتين يومي متوازن",
+        "بلاتينيوم + تركيبة مركّزة — بدون تعقيد",
+        "مناسبة بعد الولادة، الضغط، أو كثرة الصبغات",
+        "طعم لطيف — علكتان يومياً بعد الأكل"
+      ],
+      "how_it_works": [
+        "علكتان يومياً حسب تعليمات العبوة",
+        "استمري 4–8 أسابيع مع روتينكِ الحالي",
+        "زوّديها بترطيب وفيتامينات حسب احتياجكِ"
+      ],
+      "for_who": [
+        "تساقط ملحوظ أو خفة في الكثافة",
+        "ما عندكِ وقت لروتين طويل",
+        "تبغين منتج يكمّل عنايتكِ الحالية"
+      ],
+      "ingredients_highlight": ["بلاتينيوم", "بيوتين", "فيتامينات الشعر"],
+      "images": [
+        "/products/platinum-hair-gum/hero.webp",
+        "/products/platinum-hair-gum/1.webp",
+        "/products/platinum-hair-gum/2.webp",
+        "/products/platinum-hair-gum/3.webp"
+      ],
+      "upsell_slug": "anti-freeze-powder",
+      "meta_title": "علكة بلاتينية ضد تساقط الشعر | نما للجمال",
+      "meta_description": "علكة بلاتينية فاخرة لدعم صحة الشعر. عروض حصرية ودفع عند الاستلام داخل السعودية."
+    },
+    {
+      "slug": "anti-freeze-sparkling",
+      "name_ar": "مشروب غازي مضاد للتجمد",
+      "name_en": "Anti-Freeze Sparkling",
+      "positioning": "انتعاشة يومية فاخرة تدعم روتين العناية",
+      "hero_headline": "انتعاشة يومية تليق ببشرتكِ — على مزاجكِ",
+      "hero_subheadline": "مشروب غازي مضاد للتجمد — روتين صباحي بدل القهوة الثقيلة",
+      "rating": 4.8,
+      "review_count": 1800,
+      "scarcity_text": "عرض 3 علب — الأكثر طلباً هذا الأسبوع",
+      "benefits": [
+        "يساعد على دعم ترطيب الجسم ضمن نمط حياة متوازن",
+        "مناسب لحرارة وجفاف مناخنا",
+        "سهل — علبة باردة وجاهزة",
+        "يكمّل بودرة نما في روتينكِ"
+      ],
+      "how_it_works": [
+        "علبة واحدة يومياً صباحاً",
+        "يُحفظ بارداً لأفضل تجربة",
+        "استمري 3–4 أسابيع لملاحظة انتعاشكِ"
+      ],
+      "for_who": [
+        "تعبانة من الروتين الثقيل",
+        "تبغين عناية من الداخل بشكل لذيذ",
+        "تحبين المشروبات الغازية الخفيفة"
+      ],
+      "ingredients_highlight": ["إلكتروليتات", "مضادات أكسدة", "نكهة فاخرة"],
+      "images": [
+        "/products/anti-freeze-sparkling/hero.webp",
+        "/products/anti-freeze-sparkling/1.webp",
+        "/products/anti-freeze-sparkling/2.webp",
+        "/products/anti-freeze-sparkling/3.webp"
+      ],
+      "upsell_slug": "platinum-hair-gum",
+      "meta_title": "مشروب غازي مضاد للتجمد | نما للجمال",
+      "meta_description": "مشروب غازي فاخر لروتين العناية اليومي. شحن سريع ودفع عند الاستلام."
+    },
+    {
+      "slug": "anti-freeze-powder",
+      "name_ar": "بودرة مضادة للتجمد",
+      "name_en": "Anti-Freeze Powder",
+      "positioning": "عناية مركّزة خفيفة بدون ثقل",
+      "hero_headline": "عناية مركّزة بدون ثقل — حتى في الحر",
+      "hero_subheadline": "بودرة مضادة للتجمد — امتصاص سريع لروتين مسائي خفيف",
+      "rating": 4.9,
+      "review_count": 2100,
+      "scarcity_text": "دفعة محدودة — يُشحن خلال 48 ساعة",
+      "benefits": [
+        "تركيز عالي — كمية قليلة تكفي",
+        "مناسبة لمن لا تحبّين الكريمات الثقيلة",
+        "تكمّل المشروب في روتين متكامل",
+        "تغليف أنيق يليق بهدية"
+      ],
+      "how_it_works": [
+        "ملعقة واحدة مع ماء أو عصير حسب التعليمات",
+        "مساءً قبل النوم أو بعد العشاء",
+        "استمري 4 أسابيع مع ترطيب بسيط"
+      ],
+      "for_who": [
+        "بشرة تحتاج عناية خفيفة",
+        "تبحثين عن بديل الكريمات في الصيف",
+        "تبغين نتيجة روتين بسيط"
+      ],
+      "ingredients_highlight": ["ببتيدات", "فيتامين C", "مركّبات مضادة للأكسدة"],
+      "images": [
+        "/products/anti-freeze-powder/hero.webp",
+        "/products/anti-freeze-powder/1.webp",
+        "/products/anti-freeze-powder/2.webp",
+        "/products/anti-freeze-powder/3.webp"
+      ],
+      "upsell_slug": "anti-freeze-sparkling",
+      "meta_title": "بودرة مضادة للتجمد | نما للجمال",
+      "meta_description": "بودرة عناية مركّزة بامتصاص سريع. عروض كمية ودفع عند الاستلام."
+    }
+  ]
+}
