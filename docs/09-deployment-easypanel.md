@@ -67,14 +67,14 @@ services:
   backend:
     build: ./backend
     environment:
-      DATABASE_URL: postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
+      DATABASE_URL: postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
     depends_on:
       - sahtk_database
     ports:
       - "8000:8000"
 
   frontend:
-    build: ./backend
+    build: ./frontend
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:8000
     ports:
@@ -89,7 +89,7 @@ volumes:
 ## EasyPanel — خطوات
 
 1. **PostgreSQL:** موجود — رابط الاتصال:
-   `postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable`
+   `postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable`
 2. **Backend service:**
    - Build من GitHub `backend/`
    - Domain: `api.sahtk.shop`

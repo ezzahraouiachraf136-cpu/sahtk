@@ -48,5 +48,5 @@
 |--------|---------|
 | المتجر | `https://sahtk.shop` |
 | API | `https://api.sahtk.shop` |
-| قاعدة البيانات | `postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable` |
+| قاعدة البيانات | `postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable` |
 | اسم DB | `Sahtk` |

@@ -50,7 +50,7 @@ sahtk/
 
 ## Backend
 
-- FastAPI، DB: `postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable`
+- FastAPI، DB: `postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable`
 - **Alembic upgrade عند التشغيل**
 - Endpoints: `docs/06-backend-api-spec.md`
 - CAPI: Meta + TikTok + Snap — **تجزئة SHA256 للهاتف على الخادم فقط**

@@ -53,7 +53,7 @@ async def lifespan(app: FastAPI):
 ## DATABASE_URL
 
 ```
-postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
+postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
 ```
 
 داخل Docker network اسم الخدمة: `sahtk_database`.

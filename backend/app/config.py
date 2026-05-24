@@ -1,3 +1,4 @@
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -5,7 +6,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     database_url: str = (
-        "postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable"
+        "postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable"
     )
     app_env: str = "development"
     app_secret: str = "change-me"
@@ -27,6 +28,13 @@ class Settings(BaseSettings):
 
     upsell_timeout_ms: int = 12000
     upsell_price_sar: int = 99
+
+    @field_validator("database_url")
+    @classmethod
+    def normalize_database_url(cls, value: str) -> str:
+        if value.startswith("postgres://"):
+            return value.replace("postgres://", "postgresql://", 1)
+        return value
 
     @property
     def cors_origin_list(self) -> list[str]:

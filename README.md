@@ -26,7 +26,7 @@ docker compose up --build
 ## قاعدة البيانات (EasyPanel)
 
 ```
-postgres://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
+postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
 ```
 
 ## Google Sheets
