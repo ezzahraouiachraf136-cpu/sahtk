@@ -7,6 +7,11 @@ from app.database import get_db
 router = APIRouter(tags=["health"])
 
 
+@router.get("/")
+def root():
+    return {"status": "ok", "service": "Sahtk API"}
+
+
 @router.get("/health")
 def health(db: Session = Depends(get_db)):
     db_ok = False

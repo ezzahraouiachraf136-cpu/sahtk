@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-from app.config import settings
+from app.config import normalize_database_url, settings
 
 engine = create_engine(
-    settings.database_url,
+    normalize_database_url(settings.database_url),
     pool_pre_ping=True,
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
