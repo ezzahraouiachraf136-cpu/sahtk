@@ -1,112 +1,102 @@
 /**
  * نما للجمال — Sahtk Order Webhook
- * Google Apps Script: Deploy as Web App (Anyone)
- * Set SHEETS_WEBHOOK_SECRET in Script Properties + match backend env
+ * Google Apps Script: Deploy as Web App → Who has access: Anyone
+ * انسخ رابط النشر إلى SHEETS_WEBHOOK_URL في الـ backend (بدون كلمة سر)
  */
 
-const SHEET_NAME = "الطلبات";
-const SECRET_PROPERTY = "WEBHOOK_SECRET";
+const SHEET_NAME = "الورقة1";
+
+const HEADERS = [
+  "التاريخ",
+  "رقم الطلب",
+  "الدولة",
+  "الاسم",
+  "رقم الهاتف",
+  "المنتج",
+  "رمز المنتج",
+  "الكمية",
+  "السعر الإجمالي",
+  "العملة",
+  "الحالة",
+];
 
 function doPost(e) {
   try {
-    const secret = PropertiesService.getScriptProperties().getProperty(SECRET_PROPERTY);
-    const headerSecret =
-      (e && e.parameter && e.parameter.secret) ||
-      (e && e.headers && (e.headers["X-Webhook-Secret"] || e.headers["x-webhook-secret"]));
-
-    let body = {};
+    var body = {};
     if (e && e.postData && e.postData.contents) {
       body = JSON.parse(e.postData.contents);
     }
 
-    const payloadSecret = body.secret || headerSecret;
-    if (secret && payloadSecret !== secret) {
-      return jsonResponse({ ok: false, error: "unauthorized" }, 401);
-    }
-
-    const order = body.order;
-    if (!order || !order.id) {
+    var order = body.order;
+    if (!order || !order.order_number) {
       return jsonResponse({ ok: false, error: "missing order" }, 400);
     }
 
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = ss.getSheetByName(SHEET_NAME);
-    if (!sheet) {
-      sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow([
-        "timestamp",
-        "order_id",
-        "order_number",
-        "customer_name",
-        "phone",
-        "items_json",
-        "subtotal_sar",
-        "total_sar",
-        "status",
-        "upsell_accepted",
-        "utm_source",
-        "utm_medium",
-        "utm_campaign",
-        "utm_content",
-        "source_url",
-      ]);
-    }
-
-    const existingRow = findRowByOrderId(sheet, order.id);
-    const row = [
-      new Date().toISOString(),
-      order.id,
+    var sheet = getOrCreateSheet();
+    var row = [
+      order.date || "",
       order.order_number || "",
+      order.country || "المملكة العربية السعودية",
       order.customer_name || "",
       order.phone || "",
-      JSON.stringify(order.items || []),
-      order.subtotal_sar || 0,
-      order.total_sar || 0,
-      order.status || "pending_confirmation",
-      order.upsell_accepted === true,
-      order.utm_source || "",
-      order.utm_medium || "",
-      order.utm_campaign || "",
-      order.utm_content || "",
-      order.source_url || "",
+      order.products_ar || "",
+      order.skus || "",
+      order.quantities || "",
+      order.total_sar != null ? order.total_sar : "",
+      order.currency || "ريال سعودي",
+      order.status != null ? order.status : "",
     ];
 
+    var existingRow = findRowByOrderNumber(sheet, order.order_number);
     if (existingRow > 0) {
       sheet.getRange(existingRow, 1, 1, row.length).setValues([row]);
     } else {
       sheet.appendRow(row);
     }
 
-    return jsonResponse({ ok: true, order_id: order.id });
+    return jsonResponse({ ok: true, order_number: order.order_number });
   } catch (err) {
     return jsonResponse({ ok: false, error: String(err) }, 500);
   }
 }
 
 function doGet() {
-  return jsonResponse({ ok: true, service: "nama-orders-webhook" });
+  return jsonResponse({
+    ok: true,
+    service: "nama-orders-webhook",
+    columns: HEADERS,
+  });
 }
 
-function findRowByOrderId(sheet, orderId) {
-  const data = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][1] === orderId) return i + 1;
+function getOrCreateSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.getSheets()[0] || ss.insertSheet(SHEET_NAME);
+    sheet.setName(SHEET_NAME);
+  }
+  ensureHeaders(sheet);
+  return sheet;
+}
+
+function ensureHeaders(sheet) {
+  var firstRow = sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0];
+  var needsHeaders = firstRow.join("").trim() === "";
+  if (needsHeaders) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+  }
+}
+
+function findRowByOrderNumber(sheet, orderNumber) {
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (data[i][1] === orderNumber) return i + 1;
   }
   return -1;
 }
 
-function jsonResponse(obj, code) {
-  const output = ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
+function jsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
     ContentService.MimeType.JSON
   );
-  // Apps Script Web App لا يدعم code HTTP مخصص بسهولة — يكفي body
-  return output;
-}
-
-/**
- * تشغيل مرة واحدة من المحرر لتعيين السر:
- * setWebhookSecret("your-secret-here");
- */
-function setWebhookSecret(value) {
-  PropertiesService.getScriptProperties().setProperty(SECRET_PROPERTY, value);
 }

@@ -1,4 +1,3 @@
-from datetime import datetime
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, HTTPException
@@ -16,13 +15,10 @@ from app.services.products import (
     get_product,
     get_upsell_slug,
 )
+from app.services.sheet_export import build_sheets_order_payload, generate_order_number
 from app.services.sheets import send_order_to_sheets, send_order_webhook
 
 router = APIRouter(prefix="/api/orders", tags=["orders"])
-
-
-def _order_number() -> str:
-    return f"NM-{datetime.utcnow().strftime('%Y%m%d')}-{datetime.utcnow().microsecond % 10000:04d}"
 
 
 def _serialize_order(order: Order) -> OrderOut:
@@ -58,33 +54,6 @@ def _serialize_order(order: Order) -> OrderOut:
     )
 
 
-def _order_to_sheet(order: Order) -> dict:
-    return {
-        "id": str(order.id),
-        "order_number": order.order_number,
-        "customer_name": order.customer_name,
-        "phone": order.phone,
-        "items": [
-            {
-                "product_slug": i.product_slug,
-                "offer_code": i.offer_code,
-                "quantity": i.quantity,
-                "line_total_sar": float(i.line_total_sar),
-            }
-            for i in order.items
-        ],
-        "subtotal_sar": float(order.subtotal_sar),
-        "total_sar": float(order.total_sar),
-        "status": order.status,
-        "upsell_accepted": order.upsell_accepted,
-        "utm_source": order.utm_source,
-        "utm_medium": order.utm_medium,
-        "utm_campaign": order.utm_campaign,
-        "utm_content": order.utm_content,
-        "source_url": order.source_url,
-    }
-
-
 @router.post("", response_model=OrderOut, status_code=201)
 async def create_order(body: CreateOrderIn, db: Session = Depends(get_db)):
     try:
@@ -104,7 +73,7 @@ async def create_order(body: CreateOrderIn, db: Session = Depends(get_db)):
     upsell_slug = get_upsell_slug(primary_slug)
 
     order = Order(
-        order_number=_order_number(),
+        order_number=generate_order_number(),
         customer_name=body.customer_name.strip(),
         phone=phone,
         subtotal_sar=subtotal,
@@ -151,7 +120,7 @@ async def create_order(body: CreateOrderIn, db: Session = Depends(get_db)):
         order_id=str(order.id),
     )
 
-    sheet_payload = _order_to_sheet(order)
+    sheet_payload = build_sheets_order_payload(order)
     await send_order_to_sheets(sheet_payload)
     await send_order_webhook(sheet_payload)
 
@@ -197,7 +166,7 @@ async def patch_upsell(
     db.commit()
     db.refresh(order)
 
-    sheet_payload = _order_to_sheet(order)
+    sheet_payload = build_sheets_order_payload(order)
     await send_order_to_sheets(sheet_payload)
 
     return _serialize_order(order)

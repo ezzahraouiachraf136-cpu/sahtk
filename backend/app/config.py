@@ -19,7 +19,6 @@ class Settings(BaseSettings):
     cors_origins: str = "https://sahtk.shop,http://localhost:3000"
 
     sheets_webhook_url: str = ""
-    sheets_webhook_secret: str = ""
     order_webhook_url: str = ""
 
     meta_pixel_id: str = ""

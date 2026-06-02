@@ -13,14 +13,17 @@ OFFERS: dict[OfferCode, dict] = {
 PRODUCTS: dict[str, dict] = {
     "platinum-hair-gum": {
         "name_ar": "علكة بلاتينية ضد تساقط الشعر",
+        "sku": "7824",
         "upsell_slug": "anti-freeze-powder",
     },
     "anti-freeze-sparkling": {
         "name_ar": "مشروب غازي مضاد للتجمد",
+        "sku": "4593",
         "upsell_slug": "platinum-hair-gum",
     },
     "anti-freeze-powder": {
         "name_ar": "بودرة مضادة للتجمد",
+        "sku": "3167",
         "upsell_slug": "anti-freeze-sparkling",
     },
 }

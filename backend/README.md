@@ -19,7 +19,10 @@ DATABASE_URL=postgresql://sahtk:sahtk@sahtk_database:5432/sahtk?sslmode=disable
 APP_ENV=production
 APP_SECRET=<random-long-string>
 CORS_ORIGINS=https://sahtk.shop
+SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/XXXX/exec
 ```
+
+`SHEETS_WEBHOOK_URL` = رابط نشر Google Apps Script من `sheets/order-webhook.gs` (بدون كلمة سر).
 
 > `postgres://` also works — the app normalizes it to `postgresql://` automatically.
 

@@ -1,25 +1,16 @@
 {
   "order": {
-    "id": "00000000-0000-4000-8000-000000000001",
-    "order_number": "NM-20260519-0001",
-    "customer_name": "نورة العتيبي",
+    "id": "00000000-0000-0000-0000-000000000001",
+    "order_number": "nama-20260501-0001",
+    "date": "01/05/2026",
+    "country": "المملكة العربية السعودية",
+    "customer_name": "نورة",
     "phone": "966501234567",
-    "items": [
-      {
-        "product_slug": "platinum-hair-gum",
-        "offer_code": "double",
-        "quantity": 2,
-        "line_total_sar": 279
-      }
-    ],
-    "subtotal_sar": 279,
-    "total_sar": 279,
-    "status": "pending_confirmation",
-    "upsell_accepted": false,
-    "utm_source": "tiktok",
-    "utm_medium": null,
-    "utm_campaign": "launch",
-    "utm_content": null,
-    "source_url": "https://sahtk.shop/products/platinum-hair-gum"
+    "products_ar": "علكة بلاتينية ضد تساقط الشعر/بودرة مضادة للتجمد",
+    "skus": "7824/3167",
+    "quantities": "2/1",
+    "total_sar": 378,
+    "currency": "ريال سعودي",
+    "status": ""
   }
 }

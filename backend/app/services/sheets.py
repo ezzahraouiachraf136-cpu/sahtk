@@ -11,8 +11,6 @@ async def send_order_to_sheets(order_payload: dict) -> None:
     if not settings.sheets_webhook_url:
         return
     headers = {"Content-Type": "application/json"}
-    if settings.sheets_webhook_secret:
-        headers["X-Webhook-Secret"] = settings.sheets_webhook_secret
     body = {"order": order_payload}
     try:
         async with httpx.AsyncClient(timeout=15.0) as client:
