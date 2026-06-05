@@ -4,8 +4,8 @@ from zoneinfo import ZoneInfo
 from app.models.order import Order
 from app.services.products import PRODUCTS
 
-COUNTRY_AR = "المملكة العربية السعودية"
-CURRENCY_AR = "ريال سعودي"
+COUNTRY = "KSA"
+CURRENCY = "SAR"
 RIYADH = ZoneInfo("Asia/Riyadh")
 
 
@@ -42,15 +42,15 @@ def build_sheets_order_payload(order: Order) -> dict:
 
     return {
         "id": str(order.id),
-        "order_number": order.order_number,
         "date": format_order_date(order.created_at),
-        "country": COUNTRY_AR,
+        "order_number": order.order_number,
+        "country": COUNTRY,
         "customer_name": order.customer_name,
         "phone": order.phone,
         "products_ar": "/".join(names),
         "skus": "/".join(skus),
         "quantities": "/".join(quantities),
         "total_sar": float(order.total_sar),
-        "currency": CURRENCY_AR,
+        "currency": CURRENCY,
         "status": "",
     }

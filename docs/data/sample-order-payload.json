@@ -1,16 +1,16 @@
 {
   "order": {
     "id": "00000000-0000-0000-0000-000000000001",
-    "order_number": "nama-20260501-0001",
     "date": "01/05/2026",
-    "country": "المملكة العربية السعودية",
-    "customer_name": "نورة",
+    "order_number": "nama-20260501-0001",
+    "country": "KSA",
+    "customer_name": "Noura",
     "phone": "966501234567",
     "products_ar": "علكة بلاتينية ضد تساقط الشعر/بودرة مضادة للتجمد",
     "skus": "7824/3167",
     "quantities": "2/1",
     "total_sar": 378,
-    "currency": "ريال سعودي",
+    "currency": "SAR",
     "status": ""
   }
 }

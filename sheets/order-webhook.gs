@@ -1,23 +1,23 @@
 /**
- * نما للجمال — Sahtk Order Webhook
- * Google Apps Script: Deploy as Web App → Who has access: Anyone
- * انسخ رابط النشر إلى SHEETS_WEBHOOK_URL في الـ backend (بدون كلمة سر)
+ * Nama Store — Order Webhook
+ * Deploy: Web app → Execute as Me → Who has access: Anyone
+ * Paste deploy URL into backend SHEETS_WEBHOOK_URL (no secret)
  */
 
-const SHEET_NAME = "الورقة1";
+const SHEET_NAME = "Sheet1";
 
 const HEADERS = [
-  "التاريخ",
-  "رقم الطلب",
-  "الدولة",
-  "الاسم",
-  "رقم الهاتف",
-  "المنتج",
-  "رمز المنتج",
-  "الكمية",
-  "السعر الإجمالي",
-  "العملة",
-  "الحالة",
+  "date",
+  "orders",
+  "country",
+  "name",
+  "phons",
+  "product",
+  "sku",
+  "quantity",
+  "total price",
+  "currency",
+  "status",
 ];
 
 function doPost(e) {
@@ -36,14 +36,14 @@ function doPost(e) {
     var row = [
       order.date || "",
       order.order_number || "",
-      order.country || "المملكة العربية السعودية",
+      order.country || "KSA",
       order.customer_name || "",
       order.phone || "",
       order.products_ar || "",
       order.skus || "",
       order.quantities || "",
       order.total_sar != null ? order.total_sar : "",
-      order.currency || "ريال سعودي",
+      order.currency || "SAR",
       order.status != null ? order.status : "",
     ];
 
@@ -73,7 +73,9 @@ function getOrCreateSheet() {
   var sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.getSheets()[0] || ss.insertSheet(SHEET_NAME);
-    sheet.setName(SHEET_NAME);
+    if (sheet.getName() !== SHEET_NAME) {
+      sheet.setName(SHEET_NAME);
+    }
   }
   ensureHeaders(sheet);
   return sheet;
