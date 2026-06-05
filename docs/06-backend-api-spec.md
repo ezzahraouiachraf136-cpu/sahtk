@@ -190,7 +190,7 @@ allow_headers=["*"]
 ## الأمان
 
 - Rate limit على `POST /orders` (مثلاً 10/دقيقة/IP)
-- `WEBHOOK_SECRET` في header للـ Sheets
+- Sheets webhook: رابط `SHEETS_WEBHOOK_URL` فقط (بدون سر)
 - لا تسجّل أرقام كاملة في logs — mask `9665******67`
 - Hash phone على الخادم فقط لـ CAPI
 
