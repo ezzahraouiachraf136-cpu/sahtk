@@ -1,7 +1,6 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ||
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:8000";
+import { getApiBase } from "./api-base";
+
+const API_BASE = getApiBase();
 
 export interface OrderResponse {
   id: string;

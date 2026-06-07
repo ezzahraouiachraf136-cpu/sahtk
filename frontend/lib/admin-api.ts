@@ -1,9 +1,7 @@
+import { getApiBase } from "./api-base";
 import { clearAdminToken, getAdminToken } from "./admin-auth";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ||
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:8000";
+const API_BASE = getApiBase();
 
 export interface AdminMetrics {
   date_from: string;
@@ -77,11 +75,18 @@ async function adminRequest<T>(path: string, options?: RequestInit): Promise<T> 
 }
 
 export async function adminLogin(username: string, password: string) {
-  const res = await fetch(`${API_BASE}/api/admin/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  });
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}/api/admin/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+  } catch {
+    throw new Error(
+      `تعذّر الاتصال بالخادم (${API_BASE}). تأكد من نشر الـ backend وإعداد ADMIN_USERNAME و ADMIN_PASSWORD.`
+    );
+  }
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error(

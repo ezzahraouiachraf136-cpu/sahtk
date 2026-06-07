@@ -1,9 +1,7 @@
+import { getApiBase } from "./api-base";
 import { getUtmParams } from "./utm";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ||
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "http://localhost:8000";
+const API_BASE = getApiBase();
 
 const SESSION_KEY = "sahtk_session_id";
 

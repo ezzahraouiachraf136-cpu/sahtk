@@ -18,7 +18,9 @@ class Settings(BaseSettings):
     app_secret: str = "change-me"
     admin_username: str = ""
     admin_password: str = ""
-    cors_origins: str = "https://sahtk.shop,http://localhost:3000"
+    cors_origins: str = (
+        "https://sahtk.shop,http://localhost:3000,http://localhost:3001,http://localhost:3002"
+    )
 
     sheets_webhook_url: str = ""
     order_webhook_url: str = ""
