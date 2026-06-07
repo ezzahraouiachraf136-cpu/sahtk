@@ -2,6 +2,7 @@
 
 import { v4 as uuidv4 } from "uuid";
 import { sendCapiEvent } from "./api";
+import { trackAnalyticsEvent } from "./analytics";
 
 type EventName =
   | "PageView"
@@ -120,6 +121,15 @@ export function trackEvent(
     trackSnap(eventName, eventId, value);
   });
 
+  if (typeof window !== "undefined") {
+    trackAnalyticsEvent({
+      event_name: eventName,
+      product_slug: opts.productIds?.[0],
+      value,
+      order_id: opts.orderId,
+    });
+  }
+
   if (opts.sendCapi !== false && CAPI_EVENTS.includes(eventName)) {
     sendCapiEvent({
       event_id: eventId,
@@ -146,5 +156,8 @@ export function trackPageView() {
     window.ttq?.page();
     window.snaptr?.("track", "PAGE_VIEW");
   });
+  if (typeof window !== "undefined") {
+    trackAnalyticsEvent({ event_name: "PageView" });
+  }
   return eventId;
 }

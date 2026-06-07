@@ -5,7 +5,7 @@ from sqlalchemy import engine_from_config, pool
 
 from app.config import normalize_database_url, settings
 from app.database import Base
-from app.models import order  # noqa: F401
+from app.models import analytics, order  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", normalize_database_url(settings.database_url))

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo, Inter, Tajawal } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { StoreProvider } from "@/components/StoreProvider";
-import { TrustBar } from "@/components/TrustBar";
+import { StorefrontShell } from "@/components/StorefrontShell";
 import "./globals.css";
 
 const tajawal = Tajawal({
@@ -47,12 +44,7 @@ export default function RootLayout({
       className={`${tajawal.variable} ${cairo.variable} ${inter.variable}`}
     >
       <body className="bg-brand-bg font-body text-brand-dark antialiased">
-        <StoreProvider>
-          <TrustBar />
-          <Header />
-          <main className="min-h-[60vh]">{children}</main>
-          <Footer />
-        </StoreProvider>
+        <StorefrontShell>{children}</StorefrontShell>
       </body>
     </html>
   );

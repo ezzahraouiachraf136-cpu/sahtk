@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import contact, events, health, orders
+from app.routers import admin, analytics, contact, events, health, orders
 
 
 def run_migrations() -> None:
@@ -41,3 +41,5 @@ app.include_router(health.router)
 app.include_router(orders.router)
 app.include_router(events.router)
 app.include_router(contact.router)
+app.include_router(analytics.router)
+app.include_router(admin.router)

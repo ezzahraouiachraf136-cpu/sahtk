@@ -22,6 +22,10 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=966500000000
 
 Copy other vars from `.env.example` as needed.
 
+## Admin dashboard
+
+URL: `/admin` — login with backend `ADMIN_USERNAME` / `ADMIN_PASSWORD`.
+
 ## Local development
 
 ```bash

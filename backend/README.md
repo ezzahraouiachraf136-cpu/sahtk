@@ -20,9 +20,17 @@ APP_ENV=production
 APP_SECRET=<random-long-string>
 CORS_ORIGINS=https://sahtk.shop
 SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/XXXX/exec
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your-strong-password
 ```
 
+Admin dashboard: `https://sahtk.shop/admin` (uses `ADMIN_USERNAME` / `ADMIN_PASSWORD`).
+
 `SHEETS_WEBHOOK_URL` = رابط نشر Google Apps Script من `sheets/order-webhook.gs` (بدون كلمة سر).
+
+### Database migration (if needed manually)
+
+Run `docs/migrations/002_admin_analytics.sql` or `alembic upgrade head`.
 
 > `postgres://` also works — the app normalizes it to `postgresql://` automatically.
 
